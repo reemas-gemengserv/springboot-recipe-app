@@ -1,6 +1,5 @@
 package guru.springframework.recipeapp.repositories;
 
-//import guru.springframework.domain.Category;
 import guru.springframework.recipeapp.domain.Category;
 import org.springframework.data.repository.CrudRepository;
 

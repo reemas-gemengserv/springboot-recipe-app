@@ -1,6 +1,6 @@
 package guru.springframework.recipeapp.repositories;
 
-import guru.springframework.domain.UnitOfMeasure;
+import guru.springframework.recipeapp.domain.UnitOfMeasure;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UnitOfMeasureRepositoryTest {
+public class UnitOfMeasureRepositoryIT {
 
     @Autowired
     UnitOfMeasureRepository unitOfMeasureRepository;
@@ -39,5 +37,4 @@ public class UnitOfMeasureRepositoryTest {
 
         assertEquals("Cup", uomOptional.get().getDescription());
     }
-
 }

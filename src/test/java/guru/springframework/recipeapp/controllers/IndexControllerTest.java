@@ -1,8 +1,7 @@
 package guru.springframework.recipeapp.controllers;
-import guru.springframework.domain.Recipe;
+
 import guru.springframework.recipeapp.domain.Recipe;
 import guru.springframework.recipeapp.services.RecipeService;
-import guru.springframework.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -21,7 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-
 public class IndexControllerTest {
 
     @Mock
@@ -30,18 +28,19 @@ public class IndexControllerTest {
     @Mock
     Model model;
 
-    IndexController controller;
+    IndexController indexController;
+
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        controller = new IndexController(recipeService);
+        indexController = new IndexController(recipeService);
     }
 
     @Test
     public void testMockMVC() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -52,20 +51,17 @@ public class IndexControllerTest {
     public void getIndexPage() throws Exception {
 
         //given
-        Set<Recipe> recipes = new HashSet<>();
+        Set<Recipe> recipes= new HashSet<>();
         recipes.add(new Recipe());
-
         Recipe recipe = new Recipe();
-        recipe.setId(1L);
-
+        recipe.setId(10L);
         recipes.add(recipe);
 
         when(recipeService.getRecipes()).thenReturn(recipes);
-
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
         //when
-        String viewName = controller.getIndexPage(model);
+        String viewName = indexController.getIndexPage(model);
 
 
         //then
